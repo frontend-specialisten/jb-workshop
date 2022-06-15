@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { catchError, EMPTY, retry } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, EMPTY, map, retry, tap } from 'rxjs';
 import { MovieGenreService } from 'src/app/shared/movie-genre.service';
 import { MovieGenre } from '../../shared/movie-genre';
 import { MovieService } from '../../shared/movie.service';
@@ -10,6 +10,7 @@ import { MovieService } from '../../shared/movie.service';
   styleUrls: ['./movie-list.component.scss'],
 })
 export class MovieListComponent implements OnInit {
+  selectedMovieGenre$ = new BehaviorSubject<string>('0');
   movies$ = this.movieService.movies$.pipe(
     retry({
       count: 3,
@@ -20,6 +21,14 @@ export class MovieListComponent implements OnInit {
       return EMPTY;
     })
   );
+  moviesByGenre$ = combineLatest([this.selectedMovieGenre$, this.movies$]).pipe(
+    map(([selectedGenreId, movies]) => {
+      if(!selectedGenreId || selectedGenreId === '0') return movies;
+
+      return movies.filter((movie) => movie.genreId === selectedGenreId);
+    })
+  );
+
   moviesHasError = false;
 
   movieGenres$ = this.movieGenreService.genres$.pipe(catchError((err) => {
@@ -28,16 +37,17 @@ export class MovieListComponent implements OnInit {
   }));
   movieGenresHasError = false;
 
-
   constructor(
     private movieService: MovieService,
     private movieGenreService: MovieGenreService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.moviesByGenre$.subscribe();
+  }
 
-  onSelectedMovieGenre(movieGenre: MovieGenre) {
-    console.log('Genre selected:', movieGenre);
+  onSelectedMovieGenre(movieGenreId: string) {
+    this.selectedMovieGenre$.next(movieGenreId);
   }
 
   onRefreshMovies() {

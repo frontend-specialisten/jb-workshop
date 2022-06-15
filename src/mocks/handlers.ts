@@ -3,10 +3,10 @@ import { rest } from 'msw';
 
 import { generateFakeMovies, generateFakeMovieGenres } from './data';
 
-const delayOfResponse = 2000;
+const delayOfResponse = 500;
 const fakeMovies = generateFakeMovies();
 const fakeMovieGenres = generateFakeMovieGenres();
-const shouldFail = randBoolean();
+const shouldFail = false; //randBoolean();
 
 export const handlers = [
   rest.get('/fake-api/movies', (req, res, ctx) => {

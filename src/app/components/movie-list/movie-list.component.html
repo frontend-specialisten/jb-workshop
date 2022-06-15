@@ -17,7 +17,7 @@
 </div>
 
 <section class="movies">
-  <a class="movie" *ngFor="let movie of movies$ | async">
+  <a class="movie" *ngFor="let movie of moviesByGenre$ | async">
     <figure>
       <img [src]="movie.cover" width="230" height="345" />
       <figcaption>{{ movie.title }}</figcaption>
