@@ -8,10 +8,7 @@ import { Movie } from './movie';
 })
 export class MovieService {
   #moviesEndpoint = 'fake-api/movies';
+  movies$ = this.http.get<Movie[]>(this.#moviesEndpoint);
 
   constructor(private http: HttpClient) { }
-
-  getMovies() {
-    return this.http.get<Movie[]>(this.#moviesEndpoint);
-  }
 }

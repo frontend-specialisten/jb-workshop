@@ -9,10 +9,9 @@ import { MovieGenreService } from 'src/app/shared/movie-genre.service';
   styleUrls: ['./genre-list.component.scss']
 })
 export class GenreListComponent implements OnInit {
-  genres$?: Observable<MovieGenre[]> = this.movieGenres.getAll();
+  genres$ = this.movieGenres.genres$;
 
   constructor(private movieGenres: MovieGenreService) { }
 
   ngOnInit(): void {}
-
 }

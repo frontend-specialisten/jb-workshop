@@ -7,10 +7,7 @@ import { MovieGenre } from './movie-genre';
 })
 export class MovieGenreService {
   #movieGenresEndpoint = '/fake-api/movie-genres';
+  genres$ = this.http.get<MovieGenre[]>(this.#movieGenresEndpoint);
 
   constructor(private http: HttpClient) { }
-
-  getAll() {
-    return this.http.get<MovieGenre[]>(this.#movieGenresEndpoint);
-  }
 }
