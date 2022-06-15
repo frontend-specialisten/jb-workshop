@@ -6,14 +6,14 @@
     (change)="onSelectedMovieGenre($any($event.target).value)"
   >
     <option value="0">- Display All -</option>
-    <option [value]="genre.id" *ngFor="let genre of movieGenres">{{genre.name}}</option>
+    <option [value]="genre.id" *ngFor="let genre of movieGenres$ | async">{{genre.name}}</option>
   </select>
 
   <button (click)="onRefreshMovies()">Refresh movies</button>
 </div>
 
 <section class="movies">
-  <a class="movie" *ngFor="let movie of movies">
+  <a class="movie" *ngFor="let movie of movies$ | async">
     <figure>
       <img [src]="movie.cover" width="230" height="345" />
       <figcaption>{{movie.title}}</figcaption>
