@@ -6,17 +6,17 @@
     (change)="onSelectedMovieGenre($any($event.target).value)"
   >
     <option value="0">- Display All -</option>
-    <option value="1">Hardcoded genre</option>
+    <option [value]="genre.id" *ngFor="let genre of movieGenres">{{genre.name}}</option>
   </select>
 
   <button (click)="onRefreshMovies()">Refresh movies</button>
 </div>
 
 <section class="movies">
-  <a class="movie">
+  <a class="movie" *ngFor="let movie of movies">
     <figure>
-      <img [src]="'https://picsum.photos/200/300'" width="230" height="345" />
-      <figcaption>Dummy title</figcaption>
+      <img [src]="movie.cover" width="230" height="345" />
+      <figcaption>{{movie.title}}</figcaption>
     </figure>
   </a>
 </section>
