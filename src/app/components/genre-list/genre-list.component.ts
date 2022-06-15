@@ -8,12 +8,9 @@ import { MovieGenreService } from 'src/app/shared/movie-genre.service';
   styleUrls: ['./genre-list.component.scss']
 })
 export class GenreListComponent implements OnInit {
-  genres?: MovieGenre[];
+  genres$ = this.movieGenres.genres$;
 
   constructor(private movieGenres: MovieGenreService) { }
 
-  ngOnInit(): void {
-    this.movieGenres.getAll().subscribe((movieGenres) => this.genres = movieGenres);
-  }
-
+  ngOnInit(): void {}
 }

@@ -10,22 +10,15 @@ import { MovieService } from '../../shared/movie.service';
   styleUrls: ['./movie-list.component.scss'],
 })
 export class MovieListComponent implements OnInit {
-  movies?: Movie[];
-  movieGenres?: MovieGenre[];
+  movies$ = this.movieService.movies$;
+  movieGenres$ = this.movieGenreService.genres$;
 
   constructor(
     private movieService: MovieService,
     private movieGenreService: MovieGenreService
   ) {}
 
-  ngOnInit(): void {
-    this.movieService.getMovies().subscribe((movies) => {
-      this.movies = movies;
-    });
-    this.movieGenreService.getAll().subscribe((movieGenres) => {
-      this.movieGenres = movieGenres;
-    });
-  }
+  ngOnInit(): void {}
 
   onSelectedMovieGenre(movieGenre: MovieGenre) {
     console.log('Genre selected:', movieGenre);
