@@ -6,13 +6,14 @@
     (change)="onSelectedMovieGenre($any($event.target).value)"
   >
     <option value="0">- Display All -</option>
+    <option value="1">Hardcoded genre</option>
   </select>
 
   <button (click)="onRefreshMovies()">Refresh movies</button>
 </div>
 
 <section class="movies">
-  <a>
+  <a class="movie">
     <figure>
       <img [src]="'https://picsum.photos/200/300'" width="230" height="345" />
       <figcaption>Dummy title</figcaption>
