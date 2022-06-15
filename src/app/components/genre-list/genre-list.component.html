@@ -1,3 +1,6 @@
-<ul>
-  <li *ngFor="let movieGenre of genres$ | async">{{movieGenre.name}}</li>
+<ul *ngIf="genres$ | async as genres">
+  <li *ngFor="let movieGenre of genres">{{movieGenre.name}}</li>
 </ul>
+
+<h3 *ngIf="genresHasError">Oops! Something went wrong :(</h3>
+

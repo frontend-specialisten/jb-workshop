@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { catchError, EMPTY, retry } from 'rxjs';
 import { MovieGenreService } from 'src/app/shared/movie-genre.service';
 
 @Component({
@@ -7,7 +8,17 @@ import { MovieGenreService } from 'src/app/shared/movie-genre.service';
   styleUrls: ['./genre-list.component.scss']
 })
 export class GenreListComponent implements OnInit {
-  genres$ = this.movieGenres.genres$;
+  genres$ = this.movieGenres.genres$.pipe(
+    retry({
+      count: 3,
+      delay: 1000,
+    }),
+    catchError((err) => {
+      this.genresHasError = true;
+      return EMPTY;
+    })
+  );
+  genresHasError = false;
 
   constructor(private movieGenres: MovieGenreService) { }
 

@@ -1,3 +1,4 @@
+import { randBoolean } from '@ngneat/falso';
 import { rest } from 'msw';
 
 import { generateFakeMovies, generateFakeMovieGenres } from './data';
@@ -5,7 +6,7 @@ import { generateFakeMovies, generateFakeMovieGenres } from './data';
 const delayOfResponse = 2000;
 const fakeMovies = generateFakeMovies();
 const fakeMovieGenres = generateFakeMovieGenres();
-const shouldFail = false; //randBoolean();
+const shouldFail = randBoolean();
 
 export const handlers = [
   rest.get('/fake-api/movies', (req, res, ctx) => {

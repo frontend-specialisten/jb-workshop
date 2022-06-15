@@ -1,13 +1,17 @@
 <div class="action-bar">
-  <label for="movieGenre">Filter movie genres: </label>
-  <select
-    id="movieGenre"
-    class="form-control"
-    (change)="onSelectedMovieGenre($any($event.target).value)"
-  >
-    <option value="0">- Display All -</option>
-    <option [value]="genre.id" *ngFor="let genre of movieGenres$ | async">{{genre.name}}</option>
-  </select>
+  <ng-container *ngIf="movieGenres$ | async as movieGenres">
+    <label for="movieGenre">Filter movie genres: </label>
+    <select
+      id="movieGenre"
+      class="form-control"
+      (change)="onSelectedMovieGenre($any($event.target).value)"
+    >
+      <option value="0">- Display All -</option>
+      <option [value]="genre.id" *ngFor="let genre of movieGenres">
+        {{ genre.name }}
+      </option>
+    </select>
+  </ng-container>
 
   <button (click)="onRefreshMovies()">Refresh movies</button>
 </div>
@@ -16,7 +20,11 @@
   <a class="movie" *ngFor="let movie of movies$ | async">
     <figure>
       <img [src]="movie.cover" width="230" height="345" />
-      <figcaption>{{movie.title}}</figcaption>
+      <figcaption>{{ movie.title }}</figcaption>
     </figure>
   </a>
+
+  <ng-container *ngIf="moviesHasError">
+    <h3>Oops! Something went wrong :(</h3>
+  </ng-container>
 </section>
