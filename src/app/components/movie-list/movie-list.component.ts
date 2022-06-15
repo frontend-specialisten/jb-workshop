@@ -51,6 +51,6 @@ export class MovieListComponent implements OnInit {
   }
 
   onRefreshMovies() {
-    console.log('Refreshing movies...');
+    this.movieService.refreshMovies();
   }
 }
