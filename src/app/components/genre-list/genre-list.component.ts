@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { MovieGenre } from 'src/app/shared/movie-genre';
 import { MovieGenreService } from 'src/app/shared/movie-genre.service';
 
@@ -9,10 +8,12 @@ import { MovieGenreService } from 'src/app/shared/movie-genre.service';
   styleUrls: ['./genre-list.component.scss']
 })
 export class GenreListComponent implements OnInit {
-  genres$?: Observable<MovieGenre[]> = this.movieGenres.getAll();
+  genres?: MovieGenre[];
 
   constructor(private movieGenres: MovieGenreService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.movieGenres.getAll().subscribe((movieGenres) => this.genres = movieGenres);
+  }
 
 }
