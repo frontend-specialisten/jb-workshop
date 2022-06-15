@@ -1,0 +1,21 @@
+<div class="action-bar">
+  <label for="movieGenre">Filter movie genres: </label>
+  <select
+    id="movieGenre"
+    class="form-control"
+    (change)="onSelectedMovieGenre($any($event.target).value)"
+  >
+    <option value="0">- Display All -</option>
+  </select>
+
+  <button (click)="onRefreshMovies()">Refresh movies</button>
+</div>
+
+<section class="movies">
+  <a>
+    <figure>
+      <img [src]="'https://picsum.photos/200/300'" width="230" height="345" />
+      <figcaption>Dummy title</figcaption>
+    </figure>
+  </a>
+</section>
