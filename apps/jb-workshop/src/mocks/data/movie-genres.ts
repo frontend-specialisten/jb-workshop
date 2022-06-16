@@ -1,6 +1,6 @@
 import { randLine } from "@ngneat/falso";
 
-import { MovieGenre } from "src/app/shared/movie-genre";
+import { MovieGenre } from "../../app/shared/movie-genre";
 
 const movieGenres: MovieGenre[] = [
   {

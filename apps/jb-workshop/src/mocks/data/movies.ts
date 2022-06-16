@@ -1,6 +1,6 @@
 import { randCatchPhrase, randMovie, randNumber } from "@ngneat/falso";
 
-import { Movie } from "src/app/shared/movie";
+import { Movie } from "../../app/shared/movie";
 
 export function generateFakeMovies(count: number = 100): Movie[] {
   const movies: Movie[] = [];
