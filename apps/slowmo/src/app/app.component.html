@@ -1,0 +1,18 @@
+<section class="overview">
+  <h1>Overview</h1>
+</section>
+<section class="details">
+  <slowmo-rnd-list
+    [data]="rndList"
+    department="R&D"
+    (add)="add(rndList, $event)"
+    (remove)="remove(rndList, $event)"
+  ></slowmo-rnd-list>
+
+  <slowmo-sales-list
+    [data]="salesList"
+    department="Sales"
+    (add)="add(salesList, $event)"
+    (remove)="remove(salesList, $event)"
+  ></slowmo-sales-list>
+</section>

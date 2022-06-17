@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
-    "jb-workshop": "apps/jb-workshop"
+    "jb-workshop": "apps/jb-workshop",
+    "slowmo": "apps/slowmo"
   }
 }
